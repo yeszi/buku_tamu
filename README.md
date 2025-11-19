@@ -9,14 +9,6 @@ NAMA KELOMPOK :
 Program **Buku Tamu** ini dibuat menggunakan bahasa C untuk menyimpan data tamu ke dalam file, menampilkan daftar tamu, dan mengelola data secara sederhana.
 ---
 
-## 📸 Tampilan Program
-
-> **Catatan:** Upload gambar ke folder `images/` lalu ubah nama file di bawah ini.
-
-<img src="images/tampilan_program.png" width="450">
-
----
-
 ## ✨ Fitur Utama
 
 - 📝 Menambahkan data tamu (nik, nama, tujuan kunjungan)
