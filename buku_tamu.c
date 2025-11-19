@@ -4,7 +4,7 @@
 #include <time.h>
 
 // Nama file CSV
-const char *NAMA_FILE = "buku_tamu.csv";
+const char *NAMA_FILE = "daftar.csv";
 
 // --- Deklarasi Fungsi ---
 void tampilkanMenu();
