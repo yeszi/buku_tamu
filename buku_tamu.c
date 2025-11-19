@@ -3,7 +3,6 @@
 #include <string.h>
 #include <time.h>
 
-// Nama file CSV
 const char *NAMA_FILE = "daftar.csv";
 
 // --- Deklarasi Fungsi ---
@@ -13,6 +12,15 @@ void cariBerdasarkanNama();
 void cariBerdasarkanTanggal();
 void cariBerdasarkanBulan();
 void bersihkanInputBuffer();
+void toLowerCase(char *str);
+
+// --- Mengubah string ke lowercase (untuk pencarian nama) ---
+void toLowerCase(char *str) {
+    for (int i = 0; str[i]; i++) {
+        if (str[i] >= 'A' && str[i] <= 'Z')
+            str[i] = str[i] + 32;
+    }
+}
 
 // --- Fungsi Utama ---
 int main() {
@@ -80,9 +88,13 @@ void bersihkanInputBuffer() {
 }
 
 // ----------------------
-// 1. Tambah Data Tamu
+// 1. Tambah Data Tamu (SUDAH DITAMBAH WAKTU EKSEKUSI)
 // ----------------------
 void tambahTamu() {
+
+    clock_t start, end;
+    start = clock();   // mulai hitung waktu
+
     char nik[30], nama[100], tujuan[255];
     char tanggal_str[20], jam_str[10];
 
@@ -127,6 +139,12 @@ void tambahTamu() {
            tanggal_str, jam_str, nik, nama, tujuan);
 
     printf("\nSUKSES: Data pengunjung '%s' berhasil disimpan ke CSV.\n", nama);
+
+    // HITUNG WAKTU EKSEKUSI
+    end = clock();
+    double waktu_eksekusi = (double)(end - start) / CLOCKS_PER_SEC;
+
+    printf("Waktu eksekusi proses: %.6f detik\n", waktu_eksekusi);
 }
 
 // ----------------------
@@ -140,6 +158,8 @@ void cariBerdasarkanNama() {
     printf("Masukkan nama / sebagian nama: ");
     fgets(kata, sizeof(kata), stdin);
     kata[strcspn(kata, "\n")] = 0;
+
+    toLowerCase(kata);
 
     FILE *fp = fopen(NAMA_FILE, "r");
     if (!fp) {
@@ -161,9 +181,17 @@ void cariBerdasarkanNama() {
         char *nama = strtok(NULL, ";");
         char *tujuan = strtok(NULL, ";");
 
-        if (nama && strstr(nama, kata)) {
-            buffer[strcspn(buffer, "\n")] = 0;
-            printf("%s | %s | %s | %s | %s\n", tgl, jam, nik, nama, tujuan);
+        if (!nama) continue;
+
+        nama[strcspn(nama, "\n")] = 0;
+
+        char namaLower[200];
+        strcpy(namaLower, nama);
+        toLowerCase(namaLower);
+
+        if (strstr(namaLower, kata)) {
+            printf("%s | %s | %s | %s | %s\n",
+                   tgl, jam, nik, nama, tujuan);
             ditemukan++;
         }
     }
