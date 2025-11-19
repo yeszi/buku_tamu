@@ -88,7 +88,7 @@ void bersihkanInputBuffer() {
 }
 
 // ----------------------
-// 1. Tambah Data Tamu (SUDAH DITAMBAH WAKTU EKSEKUSI)
+// 1. Tambah Data Tamu 
 // ----------------------
 void tambahTamu() {
 
