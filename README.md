@@ -1,7 +1,8 @@
 # TUGAS : CASE BASE METODE STRUKTUR DATA
-NAMA KELOMPOK : 1. 2201020130 - Grayesi Silitonga
-                2. 2201020121 - Ahmad Zeldiyan
-                3. 2201020058 - Abdul Arafah
+NAMA KELOMPOK : 
+1. 2201020130 - Grayesi Silitonga
+2. 2201020121 - Ahmad Zeldiyan
+3. 2201020058 - Abdul Arafah
 ---
 
 # 📘 Buku Tamu — Program C
