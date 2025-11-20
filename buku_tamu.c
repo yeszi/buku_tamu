@@ -60,8 +60,7 @@ int main() {
     return 0;
 }
 
-// --- Implementasi Fungsi ---
-
+// --- Menu ---
 void tampilkanMenu() {
 #ifdef _WIN32
     system("cls");
@@ -151,6 +150,10 @@ void tambahTamu() {
 // 2. Cari Berdasarkan Nama
 // ----------------------
 void cariBerdasarkanNama() {
+
+    clock_t start, end;
+    start = clock();  // mulai
+
     char kata[100];
     char buffer[1024];
 
@@ -196,18 +199,27 @@ void cariBerdasarkanNama() {
         }
     }
 
+    fclose(fp);
+
     if (ditemukan == 0)
         printf("\nTidak ditemukan.\n");
     else
         printf("\nTotal ditemukan: %d data.\n", ditemukan);
 
-    fclose(fp);
+    end = clock();
+    double waktu_eksekusi = (double)(end - start) / CLOCKS_PER_SEC;
+
+    printf("Waktu eksekusi proses: %.6f detik\n", waktu_eksekusi);
 }
 
 // ----------------------
 // 3. Cari Berdasarkan Tanggal
 // ----------------------
 void cariBerdasarkanTanggal() {
+
+    clock_t start, end;
+    start = clock();
+
     char tglCari[20], buffer[1024];
 
     printf("--- Laporan Tanggal ---\n");
@@ -222,7 +234,6 @@ void cariBerdasarkanTanggal() {
     }
 
     int ditemukan = 0;
-    printf("\nHasil Laporan:\n");
 
     while (fgets(buffer, sizeof(buffer), fp)) {
         char temp[1024];
@@ -236,23 +247,33 @@ void cariBerdasarkanTanggal() {
             char *nama = strtok(NULL, ";");
             char *tujuan = strtok(NULL, ";");
 
-            printf("%s | %s | %s | %s | %s\n", tgl, jam, nik, nama, tujuan);
+            printf("%s | %s | %s | %s | %s\n", 
+                tgl, jam, nik, nama, tujuan);
+
             ditemukan++;
         }
     }
+
+    fclose(fp);
 
     if (!ditemukan)
         printf("\nTidak ada data.\n");
     else
         printf("\nTotal ditemukan: %d data.\n", ditemukan);
 
-    fclose(fp);
+    end = clock();
+    double waktu_eksekusi = (double)(end - start) / CLOCKS_PER_SEC;
+    printf("Waktu eksekusi proses: %.6f detik\n", waktu_eksekusi);
 }
 
 // ----------------------
 // 4. Cari Berdasarkan Bulan
 // ----------------------
 void cariBerdasarkanBulan() {
+
+    clock_t start, end;
+    start = clock();
+
     char bulan[10];
     char buffer[1024];
 
@@ -274,8 +295,6 @@ void cariBerdasarkanBulan() {
 
     int ditemukan = 0;
 
-    printf("\nHasil Laporan Bulanan:\n");
-
     while (fgets(buffer, sizeof(buffer), fp)) {
         char temp[1024];
         strcpy(temp, buffer);
@@ -288,15 +307,21 @@ void cariBerdasarkanBulan() {
             char *nama = strtok(NULL, ";");
             char *tujuan = strtok(NULL, ";");
 
-            printf("%s | %s | %s | %s | %s\n", tgl, jam, nik, nama, tujuan);
+            printf("%s | %s | %s | %s | %s\n",
+                tgl, jam, nik, nama, tujuan);
+
             ditemukan++;
         }
     }
+
+    fclose(fp);
 
     if (!ditemukan)
         printf("\nTidak ada data.\n");
     else
         printf("\nTotal ditemukan: %d data.\n", ditemukan);
 
-    fclose(fp);
+    end = clock();
+    double waktu_eksekusi = (double)(end - start) / CLOCKS_PER_SEC;
+    printf("Waktu eksekusi proses: %.6f detik\n", waktu_eksekusi);
 }
